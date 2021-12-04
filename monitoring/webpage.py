@@ -18,4 +18,6 @@ def find_add_to_cart_button(url: str = None) -> Optional[str]:
     add_to_cart_button = soup.findAll(attrs={"data-node-type": "commerce-add-to-cart-button"})
 
     if add_to_cart_button:
-        return "Found an add-to-cart-button"
+        msg = "Found an add-to-cart-button"
+        print(msg)
+        return msg

@@ -1,0 +1,26 @@
+service: fb-mim-checker
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: python3.8
+  memorySize: 128
+  region: eu-central-1
+  stage: ${opt:stage, 'production'}
+  lambdaHashingVersion: 20201221
+  environment:
+    PROJECT: ${self:service}
+    YOLO: ${env:YOLO}
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+
+plugins:
+  - serverless-python-requirements
+functions:
+  run:
+    handler: <<FILL OUT>>
+    events:
+      - schedule: rate(60 minutes)

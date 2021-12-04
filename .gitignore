@@ -1,0 +1,15 @@
+# installed modules
+node_modules
+package-lock.json
+
+# Mac specifics
+.DS_Store
+
+### PyCharm
+.idea/
+
+# Serverless directories
+.serverless
+
+#Secrets
+.env

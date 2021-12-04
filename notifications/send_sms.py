@@ -6,12 +6,9 @@ load_dotenv()
 
 
 def send_sms(msg: str, recipient: str = None) -> None:
-    twilio_sender_number = os.getenv("TWILIO_NUMBER")
-    account_sid = os.getenv("TWILIO_SID")
-    auth_token = os.getenv("TWILIO_AUTH")
-    client = Client(account_sid, auth_token)
+    client = Client(os.getenv("TWILIO_SID"), os.getenv("TWILIO_AUTH"))
     client.messages.create(
         body=msg,
-        from_=twilio_sender_number,
+        from_=os.getenv("TWILIO_NUMBER"),
         to=recipient,
     )

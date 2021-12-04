@@ -19,6 +19,3 @@ def find_add_to_cart_button(url: str = None) -> Optional[str]:
 
     if add_to_cart_button:
         return "Found an add-to-cart-button"
-
-
-find_add_to_cart_button()

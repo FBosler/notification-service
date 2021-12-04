@@ -9,9 +9,11 @@ SETTINGS = {
     "message": "The current exchange rate for EUR/{currency} is {value}",
 }
 
+URL = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
+
 
 def check_exchange_rate(currency: str = None, threshold: Number = None) -> Optional[str]:
-    res = requests.get("http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml")
+    res = requests.get(URL)
 
     # we have to parse XML (unfortunately I did not find a .json API)
     parsed = parseString(str(res.content.decode("utf-8")).replace("\n", "").replace("\t", ""))

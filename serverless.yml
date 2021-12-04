@@ -14,6 +14,10 @@ provider:
     EMAIL: ${env:EMAIL}
     EMAIL_PASSWORD: ${env:EMAIL_PASSWORD}
     SMTP_SERVER: ${env:SMTP_SERVER}
+    TWILIO_NUMBER: ${env:TWILIO_NUMBER}
+    TWILIO_SID: ${env:TWILIO_SID}
+    TWILIO_AUTH: ${env:TWILIO_AUTH}
+    SLACK_WEBHOOK: ${env:SLACK_WEBHOOK}
 
 
 custom:

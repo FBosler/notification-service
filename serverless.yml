@@ -11,7 +11,10 @@ provider:
   lambdaHashingVersion: 20201221
   environment:
     PROJECT: ${self:service}
-    YOLO: ${env:YOLO}
+    EMAIL: ${env:EMAIL}
+    EMAIL_PASSWORD: ${env:EMAIL_PASSWORD}
+    SMTP_SERVER: ${env:SMTP_SERVER}
+
 
 custom:
   pythonRequirements:

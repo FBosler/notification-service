@@ -4,6 +4,12 @@ from typing import Optional
 import requests
 
 URL = "https://api.avax.network/ext/bc/C/rpc"
+
+# Payload retrieved from monitoring network calls when running `balanceOf` on this contract:
+# https://snowtrace.io/address/0xf4f46382c2be1603dc817551ff9a7b333ed1d18f#readContract
+# address 1 is the address of the MIM Token (0x130966628846bfd36ff31a822705796e8cb8c18d)
+# address 2 is the address of the Master contract (0x35fA7A723B3B39f15623Ff1Eb26D8701E7D6bB21)
+
 PAYLOAD = {
     "jsonrpc": "2.0",
     "id": 1,
@@ -22,7 +28,7 @@ headers = {"content-type": "application/json"}
 THRESHOLD = 500
 
 
-def check(threshold: str = None) -> Optional[str]:
+def check_available_mim(threshold: str = None) -> Optional[str]:
     used_threshold = threshold or THRESHOLD
     res = requests.post(URL, data=json.dumps(PAYLOAD), headers=headers)
     available_mim = int(res.json().get("result"), base=16) / 1e18

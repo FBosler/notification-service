@@ -6,7 +6,7 @@ from datetime import datetime
 load_dotenv()
 
 
-def send_sms(msg: str) -> None:
+def send_to_slack(msg: str) -> None:
     URL = os.getenv("SLACK_WEBHOOK")
     headers = {"content-type": "application/json"}
     payload = {

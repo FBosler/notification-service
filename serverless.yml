@@ -1,16 +1,15 @@
-service: fb-mim-checker
+service: fb-notification-service # Name of the service
 
-useDotenv: true
+useDotenv: true # We want to get the env variables from our .env
 
 provider:
-  name: aws
-  runtime: python3.8
-  memorySize: 128
+  name: aws # provider we want to use
+  runtime: python3.8 # runtime we want to use // python3.9 does not work currently
+  memorySize: 128 # memory size, 128 is the lowest, scales performance
   region: eu-central-1
-  stage: ${opt:stage, 'production'}
-  lambdaHashingVersion: 20201221
-  environment:
-    PROJECT: ${self:service}
+  stage: ${opt:stage, 'production'} # is used in the name
+  lambdaHashingVersion: 20201221 # not stricly necessary, but helps identifying lamdas
+  environment: # here we need to make the .env variables available to our project
     EMAIL: ${env:EMAIL}
     EMAIL_PASSWORD: ${env:EMAIL_PASSWORD}
     SMTP_SERVER: ${env:SMTP_SERVER}
@@ -19,15 +18,17 @@ provider:
     TWILIO_AUTH: ${env:TWILIO_AUTH}
     SLACK_WEBHOOK: ${env:SLACK_WEBHOOK}
 
-
+# We need the following part to inject our python requirements
 custom:
   pythonRequirements:
     dockerizePip: non-linux
 
 plugins:
   - serverless-python-requirements
+
+# configures function execution
 functions:
-  run:
-    handler: <<FILL OUT>>
+  run: # name of the lambda function
+    handler: handler.run # function to be called ~ handler.py -> run()
     events:
-      - schedule: rate(60 minutes)
+      - schedule: rate(60 minutes) # frequency
